@@ -11,4 +11,17 @@ const writeFile = (error,file) => {
   }
 }
 
-fs.readFile(fileToPrint, writeFile);
+const readStream = fs.createReadStream(fileToPrint);
+let fileContent = '';
+
+readStream.on('data', (chunk)=> {
+  fileContent += chunk;
+})
+
+readStream.on('error', (error) => {
+  writeFile(error);
+})
+
+readStream.on('end', () => {
+  writeFile(null, fileContent)
+})

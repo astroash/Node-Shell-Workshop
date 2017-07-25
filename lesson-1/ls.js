@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const fs = require('fs');
 const directory = process.cwd();
 const filterExtensions = (filesArray) => {
